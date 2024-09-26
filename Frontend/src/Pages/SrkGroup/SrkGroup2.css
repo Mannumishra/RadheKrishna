@@ -1,0 +1,10 @@
+.yatraGroup img {
+  margin-top: -10%;
+  width: 100%; /* Ensure image takes up full width of its container */
+  transform: scale(0.8);
+  transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.yatraGroup img:hover {
+  transform: scale(1); /* Zoom to full size on hover */
+}

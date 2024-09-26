@@ -1,0 +1,39 @@
+.about .title-Head {
+  color: var(--color-orange);
+  font-size: 2rem;
+  margin-bottom: 0rem;
+}
+
+.about .title-Heading {
+  color: var(--color-orange);
+  font-size: 3rem;
+  margin-bottom: 0rem;
+}
+
+.about .strong {
+  color: var(--color-black);
+  font-weight: 600;
+}
+.about .about-end {
+  background: var(--color-orange);
+}
+.about .about-end .title {
+  font-size: 2rem;
+  color: var(--color-yellow);
+  font-weight: 700;
+}
+
+
+.kanuSrk {
+  background: #f9f4e8 !important;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Times New Roman", serif;
+  
+}
+
+/* .kanuSrk p {
+    justify-content: center;
+    align-items: center;
+  } */

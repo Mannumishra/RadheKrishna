@@ -1,0 +1,123 @@
+/* Background color for the left column */
+.bg-cream {
+  background: var(--color-cream);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+/* Contact Info Block */
+.contact-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Icon Styling */
+.icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed black;
+  margin-right: 20px;
+}
+
+.icon-circle img {
+  width: 30px; /* Adjust the icon size */
+  height: 30px;
+  object-fit: contain;
+}
+
+/* Contact Details */
+.contact-detail p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-dark);
+}
+
+.contact-detail p small {
+  font-size: 0.9rem;
+  color: #8c8484;
+}
+
+.contact-detail a {
+  color: var(--color-dark);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.contact-detail a:hover {
+  text-decoration: underline;
+}
+
+/* Style for the image at the bottom */
+.video-image {
+  padding: 4rem;
+  height: auto;
+  
+}
+
+/* Contact Form Styles */
+.contact-form {
+  padding: 20px;
+}
+
+.contact-form h1 {
+  color: var(--color-orange);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: var(--color-orange);
+  outline: 0;
+  box-shadow: none;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.contact-form .btn-SendMessage {
+  background-color: var(--color-orange);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50rem;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-decoration: none;
+}
+
+.text-danger {
+  color: red;
+  font-size: 0.875rem;
+}

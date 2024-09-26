@@ -1,0 +1,14 @@
+.Eventbtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  
+  .Eventbtn .view-Event {
+    text-decoration: none;  
+    background: var(--color-orange);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    margin-top: 1rem; 
+  }

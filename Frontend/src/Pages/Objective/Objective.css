@@ -1,0 +1,26 @@
+.mission-obj {
+  background: #f9f4e8 !important;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ .vedic-text {
+  font-family: "Times New Roman", serif;
+  font-size: 1.2rem;
+  color: black;
+  text-align: center !important;
+  font-weight: bold;
+}
+.kanuSrk p {
+  justify-content: center;
+  text-align: left;
+}
+
+.mission .mission-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+

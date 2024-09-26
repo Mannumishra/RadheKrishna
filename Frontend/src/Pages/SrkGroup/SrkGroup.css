@@ -1,0 +1,10 @@
+.geetaimg img {
+    margin-top: 30%;
+    width: 100%;               /* Ensure image takes up full width of its container */
+    
+    transition: transform 0.3s ease-in-out; /* Smooth transition for zoom effect */
+}
+
+.geetaimg img:hover {
+    transform: scale(1.2);      /* Zoom in to 120% on hover */
+}
