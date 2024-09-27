@@ -2,9 +2,6 @@ import React, { useEffect, useRef } from "react";
 import About from "../../Components/HomeAbout/HomeAbout";
 import kannuTrust from "../../Assets/kannutrust.jpeg";
 import kannuTrustslide from "../../Assets/kannutrust1.jpg";
-import CapturedMovements from "../../Assets/Movements.png";
-import banner2 from "../../Assets/Banner2.png";
-import banner1 from "../../Assets/Banner1.png";
 import Thakurji from "../../Assets/1.jpg";
 import RadhaKrishna from "../../Assets/2.jpg";
 import Geeta from "../../Assets/3.jpg";
@@ -13,6 +10,8 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Reachus from "../../Components/Reachus/Reachus";
 import Slider from "react-slick";
+import { useState } from "react";
+import axios from "axios"
 
 const Home = () => {
   // Scroll to top on component mount
@@ -46,16 +45,37 @@ const Home = () => {
     { id: 4, image: kannuTrustslide },
   ];
 
-  // Captured Moments images
-  const setMomentImages = [
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-  ];
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        const response = await axios.get("https://api.kanusrkgroup.in/api/gallery");
+        if (response.status === 200 && response.data.success) {
+          setImages(response.data.data); // Set images from the API response
+        }
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
+      }
+    };
 
+    fetchGalleryData();
+  }, []);
+
+  const [events, setEvents] = useState([])
+  const getApiData = async () => {
+    try {
+      const res = await axios.get("https://api.kanusrkgroup.in/api/event")
+      if (res.status === 200) {
+        setEvents(res.data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getApiData()
+  }, [])
   return (
     <>
       <Helmet>
@@ -135,9 +155,9 @@ const Home = () => {
           <div className="imagetext">
             <h2 className="title-head">Captured Moments</h2>
             <div className="grid-3">
-              {setMomentImages &&
-                setMomentImages.map((image, index) => (
-                  <img src={image} alt="moments-image" key={index} />
+              {images &&
+                images.slice(0, 6).map((image, index) => (
+                  <img src={image.gallery} alt="moments-image" key={index} />
                 ))}
             </div>
           </div>
@@ -157,12 +177,14 @@ const Home = () => {
           <h2 className="title-head">Upcoming Events</h2>
           <div className="row">
             <div className="col-md-2"></div>
-            <div className="col-md-4 mb-2">
-              <img src={banner2} alt="banner2" />
-            </div>
-            <div className="col-md-4">
-              <img src={banner1} alt="banner1" />
-            </div>
+            {
+              events.slice(0, 2).map((item, index) =>
+                <div className="col-md-4">
+                  <img src={item.image} alt="banner2" />
+                  <Link to={`/ViewEvent/${item._id}`} className="mybtn">View Event</Link>
+                </div>
+              )
+            }
             <div className="col-md-2"></div>
           </div>
           <div className="row my-5">

@@ -95,3 +95,21 @@ img{
     font-size: 1rem;
     border-style: none;
 }
+.mybtn {
+    display: inline-block;
+    background-color: #F05A28; /* Button background color */
+    color: #fff; /* Text color */
+    padding: 10px 30px; /* Padding for the button */
+    font-size: 16px; /* Font size */
+    text-align: center; /* Center the text */
+    border-radius: 50px; /* More rounded corners */
+    text-decoration: none; /* Remove underline from the link */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow */
+    margin-top: 10px; /* Margin from the top */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+  

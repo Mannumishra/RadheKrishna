@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet"; // Import Helmet
-import banner2 from "../../Assets/Banner2.png";
+import { Helmet } from "react-helmet"; 
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios"
 
 const ViewMoreEvent = () => {
   useEffect(() => {
@@ -10,6 +12,24 @@ const ViewMoreEvent = () => {
     });
   }, []);
 
+  const { id } = useParams()
+
+  const [event, setEvent] = useState({})
+
+  const getApiData = async () => {
+    try {
+      const res = await axios.get("https://api.kanusrkgroup.in/api/event/" + id)
+      if (res.status === 200) {
+        setEvent(res.data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getApiData()
+  }, [])
   return (
     <>
       <Helmet>
@@ -28,49 +48,22 @@ const ViewMoreEvent = () => {
             <div className="col-md-5">
               <div className="banner2img">
                 <img
-                  src={banner2}
+                  src={event.image}
                   alt="banner2"
                 />
               </div>
-             
+
             </div>
 
             <div className="col-md-1"></div>
-            
+
             <div className="col-md-5">
               <h2 className="title-Head py-5">
-                <strong>Kanu SRK Yatra Group</strong>
+                <strong>{event.name}</strong>
               </h2>
-              <p className="fs-bold">
-                <strong>Malikarjun Jyotirling & Hyderabad</strong>
-              </p>
-
-              <p className="fs-bold">
-                <ul>
-                  <li>
-                    <p>Return Air Tickets By Vistara Airline.</p>
-                  </li>
-                  <li>
-                    <p>Including Meals in Both Side Flight Journey.</p>
-                  </li>
-                  <li>
-                    <p>02 Night Accommodation.</p>
-                  </li>
-                  <li>
-                    <p>Return Airport Transfers.</p>
-                  </li>
-                  <li>
-                    <p>All Tours & Transfers By AC Vehicle.</p>
-                  </li>
-                  <li>
-                    <p>All Toll, Tax, TA, Parking & Permits.</p>
-                  </li>
-                </ul>
-              </p>
-
-              <p className="fs-bold">
-                <strong>Contact: 9811881650, 9899029372</strong>
-              </p>
+              <p className="fs-bold"
+              dangerouslySetInnerHTML={{ __html: event.description }}
+              />
             </div>
             <div className="col-md-1"></div>
           </div>

@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet"; // Import Helmet
-import banner2 from "../../Assets/Banner2.png";
-import banner1 from "../../Assets/Banner1.png";
-import banner3 from "../../Assets/UpcomingEvent3.jpeg";
+import { Helmet } from "react-helmet";
 import Reachus from "../../Components/Reachus/Reachus";
 import { Link } from "react-router-dom";
 import "./UpcomingEvent.css";
-
+import axios from "axios"
+import { useState } from "react";
 
 function UpcomingEvents() {
   useEffect(() => {
@@ -16,26 +14,21 @@ function UpcomingEvents() {
     });
   }, []);
 
-  const events = [
-    {
-      id: 1,
-      image: banner2,
-      link: "/ViewMoreEvent",
-      title: "Event 1",
-    },
-    {
-      id: 2,
-      image: banner1,
-      link: "/ViewMoreEvent", 
-      title: "Event 2",
-    },
-    {
-      id: 3,
-      image: banner3,
-      link: "/ViewMoreEvent", 
-      title: "Event 3",
-    },
-  ];
+  const [events, setEvents] = useState([])
+  const getApiData = async () => {
+    try {
+      const res = await axios.get("https://api.kanusrkgroup.in/api/event")
+      if (res.status === 200) {
+        setEvents(res.data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getApiData()
+  }, [])
 
   return (
     <>
@@ -56,7 +49,7 @@ function UpcomingEvents() {
             {events.map((event) => (
               <div className="col-md-4 mb-4 Eventbtn" key={event.id}>
                 <img src={event.image} alt={`Upcoming Event ${event.title}`} className="img-fluid" />
-                <Link to={event.link} className="view-Event">View Event</Link>
+                <Link to={`/ViewEvent/${event._id}`} className="view-Event">View Event</Link>
               </div>
             ))}
           </div>
