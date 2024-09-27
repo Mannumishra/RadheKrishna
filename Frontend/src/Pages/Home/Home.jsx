@@ -179,7 +179,7 @@ const Home = () => {
             <div className="col-md-2"></div>
             {
               events.slice(0, 2).map((item, index) =>
-                <div className="col-md-4">
+                <div className="col-md-4" style={{display:"flex",flexDirection:"column" ,alignItems:"center"}}>
                   <img src={item.image} alt="banner2" />
                   <Link to={`/ViewEvent/${item._id}`} className="mybtn">View Event</Link>
                 </div>
