@@ -33,7 +33,7 @@ const Registration = () => {
     setLoading(true)
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/create-registation", formData)
+      const res = await axios.post("https://api.kanusrkgroup.in/api/create-registation", formData)
       if (res.status === 200) {
         toast.success(res.data.message)
         setFormData({

@@ -30,7 +30,7 @@ const Reachus = () => {
     setLoading(true)
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/send-contact", formData)
+      const res = await axios.post("https://api.kanusrkgroup.in/api/send-contact", formData)
       console.log(res)
       if (res.status === 200) {
         toast.success(res.data.message)

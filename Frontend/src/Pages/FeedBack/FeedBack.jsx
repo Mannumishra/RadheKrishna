@@ -32,7 +32,7 @@ const FeedBack = () => {
     e.preventDefault();
     setLoading(true)
     try {
-      const res = await axios.post("http://localhost:8000/api/create-feedback", formData)
+      const res = await axios.post("https://api.kanusrkgroup.in/api/create-feedback", formData)
       if (res.status == 200) {
         toast.success(res.data.message)
         setFormData({

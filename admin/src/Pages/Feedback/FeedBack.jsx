@@ -10,7 +10,7 @@ const FeedBack = () => {
 
     const getApiData = async () => {
         try {
-            let res = await axios.get("http://localhost:8000/api/all-feedback")
+            let res = await axios.get("https://api.kanusrkgroup.in/api/all-feedback")
             console.log(res)
             if (res.status === 200) {
                 const newData = res.data.data
@@ -23,7 +23,7 @@ const FeedBack = () => {
 
     const deleteArt = async (_id) => {
         try {
-            let res = await axios.delete("http://localhost:8000/api/delete-feedback/" + _id)
+            let res = await axios.delete("https://api.kanusrkgroup.in/api/delete-feedback/" + _id)
             if (res.status === 200) {
                 toast.success("FeedBack Delete successfully")
                 getApiData()

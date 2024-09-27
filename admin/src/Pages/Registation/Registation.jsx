@@ -10,7 +10,7 @@ const Registation = () => {
 
     const getApiData = async () => {
         try {
-            let res = await axios.get("http://localhost:8000/api/all-registation")
+            let res = await axios.get("https://api.kanusrkgroup.in/api/all-registation")
             console.log(res)
             if (res.status === 200) {
                 const newData = res.data.data
@@ -23,7 +23,7 @@ const Registation = () => {
 
     const deleteArt = async (_id) => {
         try {
-            let res = await axios.delete("http://localhost:8000/api/delete-registation/" + _id)
+            let res = await axios.delete("https://api.kanusrkgroup.in/api/delete-registation/" + _id)
             if (res.status === 200) {
                 toast.success("registation Delete successfully")
                 getApiData()
