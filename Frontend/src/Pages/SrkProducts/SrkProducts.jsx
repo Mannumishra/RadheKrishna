@@ -1,19 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "./SrkProducts.css";
-import dress1 from "../../Assets/dress1.jpeg";
-import dress2 from "../../Assets/dress2.jpeg";
-import dress3 from "../../Assets/dress3.jpeg";
-import dress4 from "../../Assets/dress4.jpeg";
-import dress5 from "../../Assets/dress5.jpeg";
-import dress6 from "../../Assets/dress6.jpeg";
-import dress7 from "../../Assets/dress7.jpeg";
-import dress8 from "../../Assets/dress8.jpeg";
-import dress9 from "../../Assets/dress9.jpeg";
-import dress10 from "../../Assets/dress10.jpeg";
-import dress11 from "../../Assets/dress11.jpeg";
-import dress12 from "../../Assets/dress12.jpeg";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
 
 const SrkProducts = () => {
   // State to manage modal visibility and selected image
@@ -27,24 +16,27 @@ const SrkProducts = () => {
     });
   }, []);
 
-  const setMomentImages = [
-    dress1,
-    dress2,
-    dress3,
-    dress4,
-    dress5,
-    dress6,
-    dress7,
-    dress8,
-    dress9,
-    dress10,
-    dress11,
-    dress12,
-  ];
+  const [momentImages, setMomentImages] = useState([]);
+
+  const getApiData = async () => {
+    try {
+      const res = await axios.get("https://api.kanusrkgroup.in/api/dress");
+      console.log(res);
+      if (res.status === 200) {
+        setMomentImages(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getApiData();
+  }, [momentImages.length]);
 
   // Function to open modal with selected image
   const handleOpenModal = (image) => {
-    setSelectedImage(image);
+    setSelectedImage(image.dressImage); // Pass the image source to the modal
     setShowModal(true);
   };
 
@@ -71,7 +63,6 @@ const SrkProducts = () => {
           <div className="imagetext">
             <h1 className="title-head">Shree Kanu Poshak Bhandar</h1>
             <div className="mission-text text-left">
-              {/* Text content goes here */}
               <p>
                 <small>
                   हमारे यहां लड्डू गोपाल जी की हर प्रकार की सुंदर एवं प्रिमियम
@@ -90,7 +81,7 @@ const SrkProducts = () => {
                     href="https://www.instagram.com/shreekanu_poshakbhandar?igsh=b25idmRveG85c2Rp"
                     className="insta"
                     target="_blank"
-                    rel="noopener noreferrer" 
+                    rel="noopener noreferrer"
                   >
                     {" "}
                     Check it out
@@ -105,11 +96,11 @@ const SrkProducts = () => {
       <section className="my-5">
         <div className="container">
           <div className="row our-products">
-            {setMomentImages.map((image, index) => (
+            {momentImages.map((image, index) => (
               <div className="col-md-3 mb-3" key={index}>
                 {/* Click handler to open modal */}
                 <img
-                  src={image}
+                  src={image.dressImage}
                   alt={`Dress ${index + 1}`}
                   className="img"
                   onClick={() => handleOpenModal(image)}

@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react";
-import CapturedMovements from "../../Assets/Movements.png";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 const Image = () => {
+  const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // Fetch image data from API on component mount
   useEffect(() => {
+    const fetchGalleryData = async () => {
+      try {
+        const response = await axios.get("https://api.kanusrkgroup.in/api/gallery");
+        if (response.status === 200 && response.data.success) {
+          setImages(response.data.data); // Set images from the API response
+        }
+      } catch (error) {
+        console.error("Error fetching gallery data:", error);
+      }
+    };
+
+    fetchGalleryData();
+
+    // Scroll to the top when component mounts
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, []);
-
-  const setMomentImages = [
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-    CapturedMovements,
-  ];
 
   const handleImageClick = (image) => {
     setSelectedImage(image); // Set the clicked image as selected
@@ -43,16 +50,20 @@ const Image = () => {
             <h2 className="title-head">Photos Gallery</h2>
 
             <div className="grid-3">
-              {setMomentImages &&
-                setMomentImages.map((image, index) => (
+              {/* Render images dynamically from API */}
+              {images.length > 0 ? (
+                images.map((imageData, index) => (
                   <img
-                    src={image}
+                    src={imageData.gallery}
                     alt="moments-image"
                     key={index}
                     style={{ cursor: "pointer" }}
-                    onClick={() => handleImageClick(image)} // Click event to open the modal
+                    onClick={() => handleImageClick(imageData.gallery)} // Click event to open the modal
                   />
-                ))}
+                ))
+              ) : (
+                <p>No images available</p>
+              )}
             </div>
           </div>
         </div>
