@@ -38,7 +38,7 @@ const AddCategory = () => {
 
         try {
             setIsLoading(true);
-            const res = await axios.post("http://localhost:8000/api/event", formData, {
+            const res = await axios.post("https://api.kanusrkgroup.in/api/event", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

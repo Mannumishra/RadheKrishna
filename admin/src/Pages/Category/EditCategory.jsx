@@ -18,7 +18,7 @@ const EditCategory = () => {
 
     const getApiData = async () => {
         try {
-            let res = await axios.get("http://localhost:8000/api/event/" + _id);
+            let res = await axios.get("https://api.kanusrkgroup.in/api/event/" + _id);
             console.log(res);
             if (res.status === 200) {
                 setData(res.data.data); // Assuming description is part of response data
@@ -51,7 +51,7 @@ const EditCategory = () => {
 
         try {
             setIsLoading(true);
-            const res = await axios.put("http://localhost:8000/api/event/" + _id, formData, {
+            const res = await axios.put("https://api.kanusrkgroup.in/api/event/" + _id, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

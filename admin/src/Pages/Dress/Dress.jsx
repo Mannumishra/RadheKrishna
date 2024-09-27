@@ -23,7 +23,7 @@ const Dress = () => {
         e.preventDefault()
         try {
             setIsloding(true)
-            const res =await axios.post("http://localhost:8000/api/dress" ,formData)
+            const res =await axios.post("https://api.kanusrkgroup.in/api/dress" ,formData)
             if(res.status===200){
                 toast.success("Gallery Image add successfully")
                 navigate("/all-dress")

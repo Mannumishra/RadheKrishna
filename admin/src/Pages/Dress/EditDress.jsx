@@ -14,7 +14,7 @@ const EditDress = () => {
 
     const getApiData = async (_id) => {
         try {
-            let res = await axios.get("http://localhost:8000/api/dress/" + _id)
+            let res = await axios.get("https://api.kanusrkgroup.in/api/dress/" + _id)
             console.log(res)
             if (res.status === 200) {
                 setData(res.data.data)
@@ -35,7 +35,7 @@ const EditDress = () => {
         e.preventDefault()
         try {
             setIsloding(true)
-            const res = await axios.put("http://localhost:8000/api/dress/" + _id, formData)
+            const res = await axios.put("https://api.kanusrkgroup.in/api/dress/" + _id, formData)
             if (res.status === 200) {
                 toast.success("dressImage update successfully")
                 navigate("/all-dress")
