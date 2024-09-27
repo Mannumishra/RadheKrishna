@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import emailjs from "emailjs-com"; // Import EmailJS
+import axios from "axios"
+import toast from "react-hot-toast";
 
 const FeedBack = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    mobile: "",
+    whatsapp: "",
     age: "",
     message: "",
   });
@@ -20,48 +21,29 @@ const FeedBack = () => {
 
   // Handle form data changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate the form data
-    const { name, email, mobile, age, message } = formData;
-    if (!name || !email || !mobile || !age || !message) {
-      alert("All fields are mandatory.");
-      return;
+    try {
+      const res = await axios.post("http://localhost:8000/api/create-feedback", formData)
+      if (res.status == 200) {
+        toast.success(res.data.message)
+        setFormData({
+          name: "",
+          email: "",
+          whatsapp: "",
+          age: "",
+          message: "",
+        })
+      }
+    } catch (error) {
+      console.log(error)
     }
-
-    // Send email using EmailJS
-    emailjs
-      .send(
-        "your_service_id", // Replace with your EmailJS service ID
-        "your_template_id", // Replace with your EmailJS template ID
-        formData,
-        "your_user_id" // Replace with your EmailJS user ID
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          alert("Feedback sent successfully!");
-        },
-        (err) => {
-          console.log("FAILED...", err);
-          alert("Failed to send feedback. Please try again later.");
-        }
-      );
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      mobile: "",
-      age: "",
-      message: "",
-    });
-  };
+  }
 
   return (
     <>
@@ -92,6 +74,7 @@ const FeedBack = () => {
                       id="name"
                       className="form-control"
                       placeholder="Your Name"
+                      name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -107,6 +90,7 @@ const FeedBack = () => {
                       id="email"
                       className="form-control"
                       placeholder="Your Email"
+                      name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
@@ -116,13 +100,14 @@ const FeedBack = () => {
 
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label htmlFor="mobile">Whatsapp no.*</label>
+                    <label htmlFor="whatsapp">Whatsapp no.*</label>
                     <input
                       type="int"
-                      id="mobile"
+                      id="whatsapp"
                       className="form-control"
+                      name="whatsapp"
                       placeholder="Your Whatsapp no"
-                      value={formData.mobile}
+                      value={formData.whatsapp}
                       onChange={handleChange}
                       required
                     />
@@ -137,6 +122,7 @@ const FeedBack = () => {
                       id="age"
                       className="form-control"
                       placeholder="Your Age"
+                      name="age"
                       value={formData.age}
                       onChange={handleChange}
                       required
@@ -150,6 +136,7 @@ const FeedBack = () => {
                     <textarea
                       id="message"
                       className="form-control"
+                      name="message"
                       placeholder="Your Message"
                       value={formData.message}
                       onChange={handleChange}

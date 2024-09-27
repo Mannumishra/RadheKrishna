@@ -21,6 +21,8 @@ import Donation from './Pages/Donation/Donation';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 
 function App() {
   return (
@@ -46,6 +48,7 @@ function App() {
 
         </Routes>
         <Footer/>
+        <Toaster />
       </BrowserRouter>
 
     </>

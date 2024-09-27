@@ -6,79 +6,42 @@ import call from "../../Assets/call.svg.png";
 import mail from "../../Assets/mail.svg.png";
 import location from "../../Assets/location-dot-circle.svg.png";
 import krishnaHand from "../../Assets/KrishnaHand.jpeg";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Reachus = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    mobile: "",
-    location: "",
+    mobileNumber: "",
+    address: "",
     message: "",
   });
 
-  const [errors, setErrors] = useState({});
-
   // Handle input change
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
-  };
-
-  // Validation logic
-  const validate = () => {
-    let formErrors = {};
-    let isValid = true;
-
-    // Name validation
-    if (formData.name.trim().length < 2) {
-      formErrors.name = "Name must be at least 3 characters long.";
-      isValid = false;
-    }
-
-    // Email validation
-    const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
-    if (!emailPattern.test(formData.email)) {
-      formErrors.email = "Please enter a valid email address.";
-      isValid = false;
-    }
-
-    // Mobile number validation
-    const mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(formData.mobile)) {
-      formErrors.mobile = "Mobile number must be 10 digits.";
-      isValid = false;
-    }
-
-    // Location validation
-    if (formData.location.trim() === "") {
-      formErrors.location = "Location is required.";
-      isValid = false;
-    }
-
-    // Message validation
-    if (formData.message.trim().length < 10) {
-      formErrors.message = "Message must be at least 10 characters long.";
-      isValid = false;
-    }
-
-    setErrors(formErrors);
-    return isValid;
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission
-    if (validate()) {
-      console.log("Form submitted successfully!", formData);
-      // Clear form after successful submission
-      setFormData({
-        name: "",
-        email: "",
-        mobile: "",
-        location: "",
-        message: "",
-      });
-      setErrors({});
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8000/api/send-contact", formData)
+      console.log(res)
+      if (res.status === 200) {
+        toast.success(res.data.message)
+        setFormData({
+          name: "",
+          email: "",
+          mobileNumber: "",
+          address: "",
+          message: "",
+        })
+      }
+    } catch (error) {
+      console.log(error)
     }
   };
 
@@ -150,12 +113,10 @@ kanusrkgroup.official@gmail.com"
                         id="name"
                         className="form-control"
                         placeholder="Your Name"
+                        name="name"
                         value={formData.name}
                         onChange={handleChange}
                       />
-                      {errors.name && (
-                        <small className="text-danger">{errors.name}</small>
-                      )}
                     </div>
                   </div>
 
@@ -166,14 +127,12 @@ kanusrkgroup.official@gmail.com"
                         type="email"
                         id="email"
                         className="form-control"
+                        name="email"
                         placeholder="Your email"
                         value={formData.email}
                         onChange={handleChange}
                       />
-                      {errors.email && (
-                        <small className="text-danger">{errors.email}</small>
-                      )}
-                    </div>
+                      </div>
                   </div>
 
                   <div className="col-md-6">
@@ -184,29 +143,25 @@ kanusrkgroup.official@gmail.com"
                         id="mobile"
                         className="form-control"
                         placeholder="Your mobile no."
-                        value={formData.mobile}
+                        value={formData.mobileNumber}
                         onChange={handleChange}
+                        name="mobileNumber"
                       />
-                      {errors.mobile && (
-                        <small className="text-danger">{errors.mobile}</small>
-                      )}
                     </div>
                   </div>
 
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label htmlFor="location">Location</label>
+                      <label htmlFor="location">Address</label>
                       <input
                         type="text"
                         id="location"
                         className="form-control"
-                        placeholder="Your location"
-                        value={formData.location}
+                        placeholder="Your Address"
+                        name="address"
+                        value={formData.address}
                         onChange={handleChange}
                       />
-                      {errors.location && (
-                        <small className="text-danger">{errors.location}</small>
-                      )}
                     </div>
                   </div>
 
@@ -217,13 +172,11 @@ kanusrkgroup.official@gmail.com"
                         id="message"
                         className="form-control"
                         placeholder="Your Message"
+                        name="message"
                         value={formData.message}
                         onChange={handleChange}
                       />
-                      {errors.message && (
-                        <small className="text-danger">{errors.message}</small>
-                      )}
-                    </div>
+                     </div>
                   </div>
 
                   <div className="col-md-12">
