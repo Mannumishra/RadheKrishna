@@ -64,6 +64,7 @@ const FeedBack = () => {
                             <th scope="col">Whatsapp Number</th>
                             <th scope="col">Age</th>
                             <th scope="col">Message</th>
+                            <th scope="col">Date & Time</th> {/* New Column */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -77,6 +78,7 @@ const FeedBack = () => {
                                     <td>{item.whatsapp}</td>
                                     <td>{item.age}</td>
                                     <td>{item.message}</td>
+                                    <td>{new Date(item.createdAt).toLocaleString()}</td> {/* Format Date & Time */}
                                     <td><Link className="bt delete" onClick={() => { deleteArt(item._id) }}>Delete <i class="fa-solid fa-trash"></i></Link></td>
                                 </tr>
                             )

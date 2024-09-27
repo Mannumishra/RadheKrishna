@@ -64,6 +64,7 @@ const Query = () => {
                             <th scope="col">Mobile Number</th>
                             <th scope="col">Address</th>
                             <th scope="col">Message</th>
+                            <th scope="col">Date & Time</th> {/* New Column */}
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -77,6 +78,7 @@ const Query = () => {
                                     <td>{item.mobileNumber}</td>
                                     <td>{item.address}</td>
                                     <td>{item.message}</td>
+                                    <td>{new Date(item.createdAt).toLocaleString()}</td> {/* Format Date & Time */}
                                     <td><Link className="bt delete" onClick={() => { deleteArt(item._id) }}>Delete <i class="fa-solid fa-trash"></i></Link></td>
                                 </tr>
                             )
