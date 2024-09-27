@@ -12,6 +12,8 @@ const Registration = () => {
     });
   }, []);
 
+
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     whatsappNumber: "",
@@ -28,6 +30,7 @@ const Registration = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8000/api/create-registation", formData)
@@ -40,9 +43,11 @@ const Registration = () => {
           age: "",
           message: "",
         })
+        setLoading(false)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   };
 
@@ -138,7 +143,7 @@ const Registration = () => {
 
                 <div className="col-md-12">
                   <button type="submit" className="btn-Submit">
-                    Submit
+                  {loading ? "Please Wait.." : "  Send Message"}
                   </button>
                 </div>
               </form>

@@ -10,6 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Reachus = () => {
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,6 +27,7 @@ const Reachus = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8000/api/send-contact", formData)
@@ -39,9 +41,11 @@ const Reachus = () => {
           address: "",
           message: "",
         })
+        setLoading(false)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   };
 
@@ -132,7 +136,7 @@ kanusrkgroup.official@gmail.com"
                         value={formData.email}
                         onChange={handleChange}
                       />
-                      </div>
+                    </div>
                   </div>
 
                   <div className="col-md-6">
@@ -176,12 +180,12 @@ kanusrkgroup.official@gmail.com"
                         value={formData.message}
                         onChange={handleChange}
                       />
-                     </div>
+                    </div>
                   </div>
 
                   <div className="col-md-12">
                     <button type="submit" className="btn-Submit">
-                      Send Message
+                      {loading ? "Please Wait.." : "  Send Message"}
                     </button>
                   </div>
                 </form>

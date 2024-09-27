@@ -12,6 +12,8 @@ const FeedBack = () => {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -28,6 +30,7 @@ const FeedBack = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const res = await axios.post("http://localhost:8000/api/create-feedback", formData)
       if (res.status == 200) {
@@ -39,9 +42,11 @@ const FeedBack = () => {
           age: "",
           message: "",
         })
+        setLoading(false)
       }
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
 
@@ -147,7 +152,7 @@ const FeedBack = () => {
 
                 <div className="col-md-12">
                   <button type="submit" className="btn-Submit">
-                    Submit
+                    {loading ? "Please Wait.." : "  Send Message"}
                   </button>
                 </div>
               </form>
