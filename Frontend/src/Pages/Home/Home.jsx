@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import About from "../../Components/HomeAbout/HomeAbout";
 import kannuTrust from "../../Assets/kannutrust.jpeg";
 import kannuTrustslide from "../../Assets/kannutrust1.jpg";
@@ -10,8 +10,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import Reachus from "../../Components/Reachus/Reachus";
 import Slider from "react-slick";
-import { useState } from "react";
-import axios from "axios"
+import axios from "axios";
 
 const Home = () => {
   // Scroll to top on component mount
@@ -46,6 +45,8 @@ const Home = () => {
   ];
 
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
+
   useEffect(() => {
     const fetchGalleryData = async () => {
       try {
@@ -61,21 +62,27 @@ const Home = () => {
     fetchGalleryData();
   }, []);
 
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
   const getApiData = async () => {
     try {
-      const res = await axios.get("https://api.kanusrkgroup.in/api/event")
+      const res = await axios.get("https://api.kanusrkgroup.in/api/event");
       if (res.status === 200) {
-        setEvents(res.data.data)
+        setEvents(res.data.data);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    getApiData()
-  }, [])
+    getApiData();
+  }, []);
+
+  // Function to handle image click and open the modal
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
   return (
     <>
       <Helmet>
@@ -109,13 +116,13 @@ const Home = () => {
           className="prev-button"
           onClick={() => sliderRef.current.slickPrev()}
         >
-          &#8249; {/* Left arrow symbol */}
+          &#8249;
         </button>
         <button
           className="next-button"
           onClick={() => sliderRef.current.slickNext()}
         >
-          &#8250; {/* Right arrow symbol */}
+          &#8250;
         </button>
       </div>
 
@@ -157,7 +164,13 @@ const Home = () => {
             <div className="grid-3">
               {images &&
                 images.slice(0, 6).map((image, index) => (
-                  <img src={image.gallery} alt="moments-image" key={index} />
+                  <img
+                    src={image.gallery}
+                    alt="moments-image"
+                    key={index}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleImageClick(image.gallery)} // Click event for modal
+                  />
                 ))}
             </div>
           </div>
@@ -177,14 +190,12 @@ const Home = () => {
           <h2 className="title-head">Upcoming Events</h2>
           <div className="row">
             <div className="col-md-2"></div>
-            {
-              events.slice(0, 2).map((item, index) =>
-                <div className="col-md-4" style={{display:"flex",flexDirection:"column" ,alignItems:"center"}}>
-                  <img src={item.image} alt="banner2" />
-                  <Link to={`/ViewEvent/${item._id}`} className="mybtn">View Event</Link>
-                </div>
-              )
-            }
+            {events.slice(0, 2).map((item, index) => (
+              <div className="col-md-4" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <img src={item.image} alt="banner2" />
+                <Link to={`/ViewEvent/${item._id}`} className="mybtn">View Event</Link>
+              </div>
+            ))}
             <div className="col-md-2"></div>
           </div>
           <div className="row my-5">
@@ -198,6 +209,33 @@ const Home = () => {
       </section>
 
       <Reachus />
+
+      {/* Bootstrap Modal for Fullscreen Image */}
+      {selectedImage && (
+        <div
+          className="modal fade show"
+          style={{ display: "block" }}
+          tabIndex="-1"
+          aria-labelledby="imageModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-lg modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setSelectedImage(null)} // Close the modal
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body text-center">
+                <img src={selectedImage} alt="Fullscreen" className="img-fluid w-100 " />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

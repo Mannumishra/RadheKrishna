@@ -64,7 +64,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <i className="fa-solid fa-caret-right me-2"></i>
-                      <Link to="/gallery" className="text-light">
+                      <Link to="/images" className="text-light">
                         Gallery
                       </Link>
                     </li>
