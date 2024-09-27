@@ -43,6 +43,9 @@ const Header = () => {
             <li><Link to="/all-gallery" onClick={handletoggleBtn}> <i class="fa-solid fa-tag"></i> Manage Galary</Link></li>
             <li><Link to="/all-dress" onClick={handletoggleBtn}> <i class="fa-solid fa-tag"></i> Manage Dress</Link></li>
             <li><Link to="/all-vedio" onClick={handletoggleBtn}> <i class="fa-regular fa-images"></i> Manage Vedio</Link></li>
+            <li><Link to="/all-feedback" onClick={handletoggleBtn}> <i class="fa-regular fa-images"></i> Manage FeedBack</Link></li>
+            <li><Link to="/all-registation" onClick={handletoggleBtn}> <i class="fa-regular fa-images"></i> Manage Registations</Link></li>
+            <li><Link to="/all-query" onClick={handletoggleBtn}> <i class="fa-regular fa-images"></i> Manage Querys</Link></li>
             <button className='logout mb-5' onClick={logout}>Log Out <i class="fa-solid fa-right-from-bracket"></i></button>
 
           </ul>
