@@ -30,7 +30,7 @@ const createRegistation = async (req, res) => {
         res.status(200).json({
             success: true,
             data: newRegistration,
-            message: "Registration created successfully"
+            message: "Registration Send successfully"
         });
     } catch (error) {
         console.log(error)

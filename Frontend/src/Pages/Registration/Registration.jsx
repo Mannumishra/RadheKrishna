@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet"; 
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import emailjs from "emailjs-com"; // Import emailjs
+import axios from "axios"
+import toast from "react-hot-toast";
 
 const Registration = () => {
   useEffect(() => {
@@ -13,58 +14,35 @@ const Registration = () => {
 
   const [formData, setFormData] = useState({
     name: "",
-    whatsapp: "",
+    whatsappNumber: "",
     address: "",
     age: "",
     message: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [successMessage, setSuccessMessage] = useState("");
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.whatsapp.trim()) newErrors.whatsapp = "Whatsapp number is required";
-    if (!formData.address.trim()) newErrors.address = "Address is required";
-    if (!formData.age.trim()) newErrors.age = "Age is required";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
-    return newErrors;
-  };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length === 0) {
-      // If no errors, send form data using EmailJS
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", formData, "YOUR_USER_ID")
-        .then((response) => {
-          console.log("SUCCESS!", response.status, response.text);
-          setSuccessMessage("Form submitted successfully!");
-          // Reset form
-          setFormData({
-            name: "",
-            whatsapp: "",
-            address: "",
-            age: "",
-            message: "",
-            
-          });
-          setErrors({});
+    try {
+      const res = await axios.post("http://localhost:8000/api/create-registation", formData)
+      if (res.status === 200) {
+        toast.success(res.data.message)
+        setFormData({
+          name: "",
+          whatsappNumber: "",
+          address: "",
+          age: "",
+          message: "",
         })
-        .catch((error) => {
-          console.log("FAILED...", error);
-        });
-    } else {
-      // If there are errors, set the error state
-      setErrors(formErrors);
+      }
+    } catch (error) {
+      console.log(error)
     }
   };
 
@@ -91,11 +69,11 @@ const Registration = () => {
                       type="text"
                       id="name"
                       className="form-control"
+                      name="name"
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
                     />
-                    {errors.name && <div className="text-danger">{errors.name}</div>}
                   </div>
                 </div>
 
@@ -107,10 +85,10 @@ const Registration = () => {
                       id="whatsapp"
                       className="form-control"
                       placeholder="Your Whatsapp no"
-                      value={formData.whatsapp}
+                      value={formData.whatsappNumber}
+                      name="whatsappNumber"
                       onChange={handleChange}
                     />
-                    {errors.whatsapp && <div className="text-danger">{errors.whatsapp}</div>}
                   </div>
                 </div>
 
@@ -123,9 +101,9 @@ const Registration = () => {
                       className="form-control"
                       placeholder="Your Address"
                       value={formData.address}
+                      name="address"
                       onChange={handleChange}
                     />
-                    {errors.address && <div className="text-danger">{errors.address}</div>}
                   </div>
                 </div>
 
@@ -139,8 +117,8 @@ const Registration = () => {
                       placeholder="Your Age"
                       value={formData.age}
                       onChange={handleChange}
+                      name="age"
                     />
-                    {errors.age && <div className="text-danger">{errors.age}</div>}
                   </div>
                 </div>
 
@@ -152,9 +130,9 @@ const Registration = () => {
                       className="form-control"
                       placeholder="Your Message"
                       value={formData.message}
+                      name="message"
                       onChange={handleChange}
                     ></textarea>
-                    {errors.message && <div className="text-danger">{errors.message}</div>}
                   </div>
                 </div>
 
@@ -164,7 +142,6 @@ const Registration = () => {
                   </button>
                 </div>
               </form>
-              {successMessage && <div className="text-success">{successMessage}</div>}
             </div>
           </div>
         </div>

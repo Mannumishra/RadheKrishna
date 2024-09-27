@@ -3,7 +3,7 @@ const ContactModel = require("../Models/ContactModel");
 // Create a new contact
 const createContact = async (req, res) => {
     try {
-        console.log(req.body)
+        // console.log(req.body)
         const { name, email, mobileNumber, address, message } = req.body;
 
         // Basic validation
