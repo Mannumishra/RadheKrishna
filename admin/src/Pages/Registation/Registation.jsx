@@ -23,9 +23,9 @@ const Registation = () => {
 
     const deleteArt = async (_id) => {
         try {
-            let res = await axios.delete("http://localhost:8000/api/delete-feedback/" + _id)
+            let res = await axios.delete("http://localhost:8000/api/delete-registation/" + _id)
             if (res.status === 200) {
-                toast.success("FeedBack Delete successfully")
+                toast.success("registation Delete successfully")
                 getApiData()
             }
         } catch (error) {

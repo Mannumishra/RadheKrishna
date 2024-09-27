@@ -1,4 +1,5 @@
 const FeedbackModel = require("../Models/FeedbackModel");
+const { transporter } = require("../Utils/MailSend");
 
 // Create new feedback
 const createFeedback = async (req, res) => {
@@ -29,6 +30,59 @@ const createFeedback = async (req, res) => {
         });
 
         await newFeedback.save();
+
+        // Email template for user
+        const userTemplate = `
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="text-align: center; color: #333;">Thank You for Your Feedback!</h2>
+        <p style="font-size: 16px; color: #555;">Dear ${name},</p>
+        <p style="font-size: 16px; color: #555;">Thank you for providing your feedback. Here’s a summary of your submission:</p>
+        <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>WhatsApp Number:</strong> ${whatsapp}</li>
+            <li><strong>Age:</strong> ${age}</li>
+            <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">We appreciate your input and will consider it in our future improvements.</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
+    </div>
+`;
+
+        // Email template for admin
+        const adminTemplate = `
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="text-align: center; color: #333;">New Feedback Submission</h2>
+        <p style="font-size: 16px; color: #555;">A new feedback form submission has been received:</p>
+        <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>WhatsApp Number:</strong> ${whatsapp}</li>
+            <li><strong>Age:</strong> ${age}</li>
+            <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">Please take the necessary actions based on this feedback.</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
+    </div>
+`;
+
+        // Send email to user
+        await transporter.sendMail({
+            from: 'kanusrkgroup.official@gmail.com', // Replace with your email
+            to: email,
+            subject: 'Thank You for Your Feedback',
+            html: userTemplate,
+        });
+
+        // Send email to admin
+        await transporter.sendMail({
+            from: 'kanusrkgroup.official@gmail.com', // Replace with your email
+            to: "kanusrkgroup.official@gmail.com",
+            subject: 'New Feedback Submission',
+            html: adminTemplate,
+        });
         res.status(200).json({
             success: true,
             data: newFeedback,

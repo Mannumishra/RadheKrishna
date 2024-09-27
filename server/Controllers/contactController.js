@@ -1,4 +1,5 @@
 const ContactModel = require("../Models/ContactModel");
+const { transporter } = require("../Utils/MailSend");
 
 // Create a new contact
 const createContact = async (req, res) => {
@@ -30,6 +31,59 @@ const createContact = async (req, res) => {
         });
 
         await newContact.save();
+
+        // Email template for user
+        const userTemplate = `
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="text-align: center; color: #333;">Thank You for Your Feedback!</h2>
+        <p style="font-size: 16px; color: #555;">Dear ${name},</p>
+        <p style="font-size: 16px; color: #555;">Thank you for reaching out to us. Here’s a summary of your submission:</p>
+        <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Mobile Number:</strong> ${mobileNumber}</li>
+            <li><strong>Address:</strong> ${address}</li>
+            <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">We appreciate your feedback and will get back to you soon!</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
+    </div>
+`;
+
+        // Email template for admin
+        const adminTemplate = `
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="text-align: center; color: #333;">New Contact Submission</h2>
+        <p style="font-size: 16px; color: #555;">A new contact form submission has been received:</p>
+        <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>Email:</strong> ${email}</li>
+            <li><strong>Mobile Number:</strong> ${mobileNumber}</li>
+            <li><strong>Address:</strong> ${address}</li>
+            <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">Please take the necessary actions.</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
+    </div>
+`;
+
+        // Send email to user
+        await transporter.sendMail({
+            from: 'kanusrkgroup.official@gmail.com', // Replace with your email
+            to: email,
+            subject: 'Thank You for Your Feedback',
+            html: userTemplate,
+        });
+
+        // Send email to admin
+        await transporter.sendMail({
+            from: 'kanusrkgroup.official@gmail.com', // Replace with your email
+            to: "kanusrkgroup.official@gmail.com",
+            subject: 'New Contact Submission',
+            html: adminTemplate,
+        });
         res.status(200).json({
             success: true,
             data: newContact,

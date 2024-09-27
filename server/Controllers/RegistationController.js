@@ -1,4 +1,5 @@
-const RigistatonModel = require("../Models/RegistationModel")
+const RigistatonModel = require("../Models/RegistationModel");
+const { transporter } = require("../Utils/MailSend");
 
 
 const createRegistation = async (req, res) => {
@@ -27,6 +28,32 @@ const createRegistation = async (req, res) => {
         });
 
         await newRegistration.save();
+
+        // Email template for admin
+        const adminTemplate = `
+    <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="text-align: center; color: #333;">New Registration Submission</h2>
+        <p style="font-size: 16px; color: #555;">A new registration has been received:</p>
+        <ul>
+            <li><strong>Name:</strong> ${name}</li>
+            <li><strong>WhatsApp Number:</strong> ${whatsappNumber}</li>
+            <li><strong>Address:</strong> ${address}</li>
+            <li><strong>Age:</strong> ${age}</li>
+            <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p style="font-size: 16px; color: #555;">Please take the necessary actions based on this registration.</p>
+        <p style="font-size: 16px; color: #555;">Best regards,</p>
+        <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
+    </div>
+`;
+
+        // Send email to admin
+        await transporter.sendMail({
+            from: 'kanusrkgroup.official@gmail.com', // Replace with your email
+            to: "kanusrkgroup.official@gmail.com",
+            subject: 'New Registration Submission',
+            html: adminTemplate,
+        });
         res.status(200).json({
             success: true,
             data: newRegistration,
