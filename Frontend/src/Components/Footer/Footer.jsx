@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer className="bg-dark text-light py-5">
+      <footer className="bg-dark text-light pt-5">
         <div className="container">
           <div className="row">
             <div className="col-md-3 mb-4 ">
@@ -20,10 +20,10 @@ const Footer = () => {
                 <div className="mb-2">
                   <i className="fa-solid fa-envelope me-2"></i>
                   <a
-                    href="mailto:kanusrkgroup@gmail.com"
+                    href="mailto:kanusrkgroup.official@gmail.com"
                     className="text-light"
                   >
-                    kanusrkgroup@gmail.com
+                    kanusrkgroup.official@gmail.com
                   </a>
                 </div>
                 <div>
@@ -130,43 +130,36 @@ const Footer = () => {
               <p>Join with us and feel the power of God.</p>
               <ul className="list-unstyled social-links d-flex">
                 <li className="me-3">
-                  <a href="https://www.facebook.com/" className="text-light">
+                  <a href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL" className="text-light">
                     <i className="fab fa-facebook-f"></i>
                   </a>
                 </li>
                 <li className="me-3">
-                  <a href="https://www.twitter.com/" className="text-light">
-                    <i className="fab fa-twitter"></i>
+                  <a href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx" className="text-light">
+                    <i className="fab fa-instagram"></i>
                   </a>
                 </li>
                 <li className="me-3">
-                  <a href="https://www.youtube.com/" className="text-light">
+                  <a href="https://www.youtube.com/@kanusrkgroup" className="text-light">
                     <i className="fab fa-youtube"></i>
                   </a>
                 </li>
-                <li>
-                  <a href="https://www.pinterest.com/" className="text-light">
-                    <i className="fab fa-pinterest"></i>
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </div>
         </div>
-      </footer>
       <div className="row copyright">
         <div className="col-md-12 text-center">
           <p className="mb-0">
             {" "}
             &#169; {new Date().getFullYear()}{" "}
-            <Link to={`/`}>Kanu SRK Group</Link>. All Rights Reserved. Designed
-            By{" "}
-            <a href="https://www.digiindiasolutions.com/" target="_blank">
-              DIGI INDIA SOLUTIONS
-            </a>
+            <Link to={`/`}>Kanu SRK Group</Link>. All Rights Reserved.
+            
           </p>
         </div>
       </div>
+      </footer>
     </>
   );
 };

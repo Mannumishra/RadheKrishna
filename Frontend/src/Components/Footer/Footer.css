@@ -20,6 +20,7 @@ footer .social-links a {
   background: var(--color-orange);
   color: white;
   padding: 1rem 0rem;
+  width: 100%;
 }
 .copyright a {
   color: var(--color-yellow);

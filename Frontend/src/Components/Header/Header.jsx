@@ -47,24 +47,24 @@ const Header = () => {
       <a
         href="https://api.whatsapp.com/send?phone=919873031650"
         target="_blank"
-        class="whatsapp_float"
+        className="whatsapp_float"
       >
-        <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+        <i className="fa-brands fa-whatsapp whatsapp-icon"></i>
       </a>
 
-      <a href="tel:+919811881650" target="_blank" class="call_float">
-        <i class="fa-solid fa-phone-volume"></i>
+      <a href="tel:+919811881650" target="_blank" className="call_float">
+        <i className="fa-solid fa-phone-volume"></i>
       </a>
 
       <header>
         <div className="above-line ">
           <div className="contact">
             <div className="single-info">
-              <i class="fa-solid fa-envelope-open-text"></i>
-              <a href="mailto:kanusrkgroup@gmail.com">kanusrkgroup@gmail.com</a>
+              <i className="fa-solid fa-envelope-open-text"></i>
+              <a href="mailto:kanusrkgroup.official@gmail.com">kanusrkgroup.official@gmail.com</a>
             </div>
             <div className="single-info">
-              <i class="fa-solid fa-phone-volume"></i>
+              <i className="fa-solid fa-phone-volume"></i>
               <a href="tel:+919873031650">+91-9873031650</a>
               <a href="#" className="mx-5">Registration No :- 414/2023</a>
             </div>
@@ -73,18 +73,16 @@ const Header = () => {
           </div>
 
           <div className="list-unstyled social ">
-            <a href="https://www.facebook.com/">
+            <a href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.twitter.com/">
-              <i className="fab fa-twitter"></i>
+            <a href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx">
+              <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://www.youtube.com/">
+            <a href="https://www.youtube.com/@kanusrkgroup">
               <i className="fab fa-youtube"></i>
             </a>
-            <a href="https://www.pinterest.com/">
-              <i className="fab fa-pinterest"></i>
-            </a>
+           
           </div>
 
           {/* Google Translate Element */}

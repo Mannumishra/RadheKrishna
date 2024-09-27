@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet"; // Import Helmet
+import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import "./SrkProducts.css";
 import dress1 from "../../Assets/dress1.jpeg";
 import dress2 from "../../Assets/dress2.jpeg";
@@ -13,8 +13,13 @@ import dress9 from "../../Assets/dress9.jpeg";
 import dress10 from "../../Assets/dress10.jpeg";
 import dress11 from "../../Assets/dress11.jpeg";
 import dress12 from "../../Assets/dress12.jpeg";
+import { Modal, Button } from "react-bootstrap";
 
 const SrkProducts = () => {
+  // State to manage modal visibility and selected image
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -37,6 +42,18 @@ const SrkProducts = () => {
     dress12,
   ];
 
+  // Function to open modal with selected image
+  const handleOpenModal = (image) => {
+    setSelectedImage(image);
+    setShowModal(true);
+  };
+
+  // Function to close modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedImage(null);
+  };
+
   return (
     <>
       <Helmet>
@@ -54,33 +71,11 @@ const SrkProducts = () => {
           <div className="imagetext">
             <h1 className="title-head">Shree Kanu Poshak Bhandar</h1>
             <div className="mission-text text-left">
-            
+              {/* Text content goes here */}
               <p>
                 <small>
                   हमारे यहां लड्डू गोपाल जी की हर प्रकार की सुंदर एवं प्रिमियम
-                  पोशाक मिलती है। हमारे पास जो कलैक्शन है वह खास इस बात का ध्यान
-                  में रखते हुए है की गोपाल जी इतने कोमल हैं की उनको किसी भी तरह
-                  की कोई पोशाक चुभनी नही चाहिए।
-                </small>
-              </p>
-              <p>
-                <small>
-                  आप लोग घर बैठे भी यह पोशाक खरीद सकतें हैं। जो जल्द से जल्द
-                  आपको कोरियर के माध्यम से मिल जायेगी। एवं हमारे यहां से
-                  देश-विदेश में हर जगह पोशाक भेजने की सुविधा दी जाती है। जिससे
-                  कि जो लोग अंतरराष्ट्रीय रहते हैं, उन्हें गोपाल जी की पोशाक के
-                  लिए परेशान नहीं होना पड़ता। हम उन्हे घर बैठे ही यह सेवा देते
-                  हैं। हमारे कई क्लाइंट हैं बाहर विदेश में जिन्हें हम यह सुविधा
-                  प्रदान करतें आ रहे हैं। एवं हमारी कलैक्शन की गुणवत्ता और हमारी
-                  इस सेवा के लिए हम जाने जाते हैं।
-                </small>
-              </p>
-              <p>
-                <small>
-                  यदि आपको भी आपके गोपाल जी के लिए पोशाक ऑर्डर करनी हो तो आप
-                  नीचे दिए नंबर पर व्हाट्सअप मैसेज कर सकते हैं। आपको पोशाक की
-                  फोटो कैटेलॉग मिल जायेगी। एवं नीचे दिए गए लिंक के माध्यम से भी
-                  आप हमारे इंस्टाग्राम के पेज से जुड़ सकते हैं।
+                  पोशाक मिलती है...
                 </small>
               </p>
               <p className="vedicLastText">जय श्री कृष्णा</p>
@@ -95,7 +90,7 @@ const SrkProducts = () => {
                     href="https://www.instagram.com/shreekanu_poshakbhandar?igsh=b25idmRveG85c2Rp"
                     className="insta"
                     target="_blank"
-                    rel="noopener noreferrer" // Security measure
+                    rel="noopener noreferrer" 
                   >
                     {" "}
                     Check it out
@@ -111,17 +106,40 @@ const SrkProducts = () => {
         <div className="container">
           <div className="row our-products">
             {setMomentImages.map((image, index) => (
-              <div className="col-md-3 mb-3" key={index}> {/* Use index as key */}
+              <div className="col-md-3 mb-3" key={index}>
+                {/* Click handler to open modal */}
                 <img
                   src={image}
-                  alt={`Dress ${index + 1}`} // Better alt text
+                  alt={`Dress ${index + 1}`}
                   className="img"
+                  onClick={() => handleOpenModal(image)}
                 />
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Modal for displaying images */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Dress Image</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Selected Dress"
+              className="img-fluid w-100"
+            />
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

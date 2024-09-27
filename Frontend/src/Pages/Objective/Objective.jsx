@@ -29,7 +29,7 @@ const Objective = () => {
           <div className="imagetext">
             <h1 className="title-head">Our Mission</h1>
             <div className="mission-obj text-left">
-            <h2 className="fs-6 fw-bold text-start py-3"><strong>परिचय (Introduction)</strong></h2>
+            <h2 className="fs-6 fw-bold text-start py-1"><strong>परिचय (Introduction)</strong></h2>
             
               <p>
                 <small>
@@ -40,7 +40,7 @@ const Objective = () => {
                   सकारात्मक परिवर्तन लाने के लिए एक साथ, एक जुट होकर काम करना।
                 </small>
               </p>
-              <h2 className="fs-6 fw-bold text-start py-3"><strong> हमारे मूल्य (Our Values)</strong></h2>
+              <h2 className="fs-6 fw-bold text-start py-2"><strong> हमारे मूल्य (Our Values)</strong></h2>
               <p></p>
               <ul>
                 <li>
@@ -52,7 +52,7 @@ const Objective = () => {
                 
               </ul>
 
-              <h2 className="fs-6 fw-bold text-start py-3"><strong> हमारे कार्यक्रम (Our Programs)</strong></h2>
+              <h2 className="fs-6 fw-bold text-start py-2"><strong> हमारे कार्यक्रम (Our Programs)</strong></h2>
               <p></p>
               <ul>
                 <li>

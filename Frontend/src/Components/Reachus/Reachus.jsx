@@ -112,8 +112,11 @@ const Reachus = () => {
                   <p>
                     <small>Make a Quote.</small>
                   </p>
-                  <a href="mailto:kanusrkgroup@gmail.com">
-                    kanusrkgroup@gmail.com
+                  <a
+                    href="mailto:
+kanusrkgroup.official@gmail.com"
+                  >
+                    kanusrkgroup.official@gmail.com
                   </a>
                 </div>
               </div>
@@ -137,7 +140,7 @@ const Reachus = () => {
             <div className="col-md-6">
               <div className="contact-form">
                 <h1>Reach us</h1>
-                
+
                 <form className="row" onSubmit={handleSubmit}>
                   <div className="col-md-6">
                     <div className="form-group">

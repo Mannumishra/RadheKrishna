@@ -65,7 +65,7 @@ const SrkGroup = () => {
                         alt="geeta full-size"
                         className="img-fluid w-100"
                       />{" "}
-                      {/* w-100 ensures the image fills the modal */}
+                      
                     </div>
                   </div>
                 </div>

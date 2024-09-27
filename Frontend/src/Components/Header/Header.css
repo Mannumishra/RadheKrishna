@@ -41,9 +41,9 @@ header nav {
   width: 95%;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   border-radius: 15px;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 1rem;
 }
 
 header nav .logo img {
@@ -89,6 +89,10 @@ header .donate-btn {
 @media only screen and (max-width: 1300px) {
   .hum-drop-down {
     color: black !important;
+  }
+
+  header nav {
+    position: relative;
   }
 
   header nav .nav-links li a:hover {
@@ -139,10 +143,9 @@ header .donate-btn {
     padding: 2rem 0rem;
   }
 
-  header nav{
+  header nav {
     width: 100%;
-    
-}
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -152,10 +155,6 @@ header .donate-btn {
 }
 
 @media only screen and (max-width: 450px) {
-    header nav{
-        position: relative;
-        
-    }
   header nav .donate-btn {
     display: none;
   }

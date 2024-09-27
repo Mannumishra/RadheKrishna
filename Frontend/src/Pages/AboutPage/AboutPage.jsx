@@ -34,7 +34,7 @@ const AboutPage = () => {
         <div className="container">
           <h2 className="title-head">Founder President</h2>
 
-          <div className="row overflow-hidden">
+          <div className="row overflow-hidden founder">
             <div className="col-md-5 bg-orange">
               <img
                 src={founderImage}
@@ -53,12 +53,11 @@ const AboutPage = () => {
                 medium to play the main role in this spiritual activity.
               </p>
             </div>
-            
 
             {/* <div className="col-md-5 mt-5">
               <img src={backbanner} alt="back banner" />
             </div> */}
-          
+
             <div className="col-container">
               <h2 className="title-Head py-5 text-center">Our Story</h2>
               <div className="story-text">
@@ -147,16 +146,15 @@ const AboutPage = () => {
                 <p className="fs-bold">
                   <strong>B.K Aggarwal and Ms. Kavita Aggarwal</strong>
                 </p>
+                <div className="founder-last">
                 <p className="fs-bold">
                   <strong>(Founder President)</strong>
                 </p>
+                </div>
               </div>
             </div>
-
-            
-            </div>
-            </div>
-        
+          </div>
+        </div>
       </section>
 
       <div className="my-5">

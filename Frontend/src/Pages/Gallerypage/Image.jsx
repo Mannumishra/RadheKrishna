@@ -67,7 +67,7 @@ const Image = () => {
           aria-labelledby="imageModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog modal-dialog-centered modal-fullscreen">
+          <div className="modal-dialog modal-lg modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <button
@@ -78,7 +78,7 @@ const Image = () => {
                 ></button>
               </div>
               <div className="modal-body text-center">
-                <img src={selectedImage} alt="Fullscreen" className="img-fluid w-50 " />
+                <img src={selectedImage} alt="Fullscreen" className="img-fluid w-100 " />
               </div>
             </div>
           </div>

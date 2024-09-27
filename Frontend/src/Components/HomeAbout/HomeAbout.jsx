@@ -11,17 +11,11 @@ const About = () => {
               Kanu Shree Radhe Krishna Group
             </h1>
             <h4 className="text-center mb-4 title-Head">
-              Smile, Serve & Spread The Happiness
+              Smile, Serve & Spread The Happiness !!
             </h4>
 
             <div className="kanuSrk">
-              <h2 className="fs-6 fw-bold text-center">
-                <strong>Kanu SRK Group</strong>
-              </h2>
-          
-              <h3 className="fs-6  text-center">
-                <strong>जय श्री राधे कृष्णा जी</strong>
-              </h3>
+              
               <p>
                 <small>
                   हमारे अति प्रिय "श्री कनु ठाकुर जी" हमारे घर में "श्री बांके
@@ -77,7 +71,7 @@ const About = () => {
                 </small>
               </p>
               <h3 className="fs-6  text-center">
-                <strong>कृपया समर्थन करते रहें</strong>
+                <strong>कृपया समर्थन करते रहें !!</strong>
               </h3>
               <h2 className="fs-6  text-center">
                 <strong>राधे राधे</strong>

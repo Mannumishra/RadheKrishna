@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import About from "../../Components/HomeAbout/HomeAbout";
 import kannuTrust from "../../Assets/kannutrust.jpeg";
 import kannuTrustslide from "../../Assets/kannutrust1.jpg";
@@ -9,14 +9,13 @@ import Thakurji from "../../Assets/1.jpg";
 import RadhaKrishna from "../../Assets/2.jpg";
 import Geeta from "../../Assets/3.jpg";
 import { Helmet } from "react-helmet";
-
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Reachus from "../../Components/Reachus/Reachus";
 import Slider from "react-slick";
-import AutoPlaySound from "../../Components/AutoPlaySound/AutoPlaySound";
 
 const Home = () => {
+  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -24,8 +23,30 @@ const Home = () => {
     });
   }, []);
 
-  // const [momentImages,setMomentImages] = useState([])
+  // Reference to the slider
+  const sliderRef = useRef(null);
 
+  // Slider settings
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    pauseOnHover: false,
+  };
+
+  // Slider data
+  const slides = [
+    { id: 1, image: Thakurji },
+    { id: 2, image: RadhaKrishna },
+    { id: 3, image: Geeta },
+    { id: 4, image: kannuTrustslide },
+  ];
+
+  // Captured Moments images
   const setMomentImages = [
     CapturedMovements,
     CapturedMovements,
@@ -33,25 +54,6 @@ const Home = () => {
     CapturedMovements,
     CapturedMovements,
     CapturedMovements,
-  ];
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    pauseOnHover: false,
-    
-  };
-
-  const slides = [
-    { id: 1, image: Thakurji },
-    { id: 2, image: RadhaKrishna },
-    { id: 3, image: Geeta },
-    { id: 4, image: kannuTrustslide },
   ];
 
   return (
@@ -70,7 +72,7 @@ const Home = () => {
       </Helmet>
 
       <div className="home-slider">
-        <Slider {...settings} className="slider">
+        <Slider {...settings} ref={sliderRef} className="slider">
           {slides.map((slide) => (
             <div key={slide.id} className="slide-item">
               <img
@@ -81,32 +83,46 @@ const Home = () => {
             </div>
           ))}
         </Slider>
+
+        {/* Next and Previous buttons */}
+        <button
+          className="prev-button"
+          onClick={() => sliderRef.current.slickPrev()}
+        >
+          &#8249; {/* Left arrow symbol */}
+        </button>
+        <button
+          className="next-button"
+          onClick={() => sliderRef.current.slickNext()}
+        >
+          &#8250; {/* Right arrow symbol */}
+        </button>
       </div>
 
       <div className="container text-center">
-      <div className="row justify-content-center btns">
-        <div className="col-12 col-md-6 col-lg-4 mb-3">
-          <Link to="/registration" className="btn member-btn w-70">
-            Become a Member
-          </Link>
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-3">
-          <Link to="/donation" className="btn donate-btn w-70">
-            Donate Now
-          </Link>
+        <div className="row justify-content-center btns">
+          <div className="col-12 col-md-6 col-lg-4 mb-3">
+            <Link to="/registration" className="btn member-btn w-70">
+              Become a Member
+            </Link>
+          </div>
+          <div className="col-12 col-md-6 col-lg-4 mb-3">
+            <Link to="/donation" className="btn donate-btn w-70">
+              Donate Now
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
 
       <About />
 
       <section className="joinus">
         <div className="container-fluid">
           <div className="banner">
-            <img src={kannuTrust} alt="" />
+            <img src={kannuTrust} alt="Kannu Trust" />
           </div>
           <div className="subcribe">
-            <h2>Subscribe us to know more about our events and updates.</h2>
+            <h2>Subscribe to know more about our events and updates.</h2>
             <Link to={`/contact`} className="btn-Subscribe">
               Subscribe
             </Link>
@@ -118,11 +134,10 @@ const Home = () => {
         <div className="container">
           <div className="imagetext">
             <h2 className="title-head">Captured Moments</h2>
-
             <div className="grid-3">
               {setMomentImages &&
                 setMomentImages.map((image, index) => (
-                  <img src={image} alt="moments-image" key="index" />
+                  <img src={image} alt="moments-image" key={index} />
                 ))}
             </div>
           </div>

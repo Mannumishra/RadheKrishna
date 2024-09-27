@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet"; // Import Helmet
-import { Link } from "react-router-dom";
-import Reachus from "../../Components/Reachus/Reachus";
 import banner2 from "../../Assets/Banner2.png";
 
 const ViewMoreEvent = () => {
@@ -27,48 +25,14 @@ const ViewMoreEvent = () => {
       <section className="about py-5">
         <div className="container">
           <div className="row">
-            <div className="col-md-5 py-5">
+            <div className="col-md-5">
               <div className="banner2img">
                 <img
                   src={banner2}
                   alt="banner2"
-                  data-bs-toggle="modal"
-                  data-bs-target="#imageModal"
-                  style={{ cursor: "pointer" }}
                 />
               </div>
-
-              {/* Bootstrap Modal */}
-              <div
-                className="modal fade"
-                id="imageModal"
-                tabIndex="-1"
-                aria-labelledby="imageModalLabel"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-lg modal-dialog-centered">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="imageModalLabel">
-                        Kanu SRK Yatra Group
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="modal-body text-center">
-                      <img
-                        src={banner2}
-                        alt="banner2 full-size"
-                        className="img-fluid w-50"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
             </div>
 
             <div className="col-md-1"></div>
