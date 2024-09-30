@@ -35,7 +35,7 @@ const createContact = async (req, res) => {
         // Email template for user
         const userTemplate = `
     <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
-        <h2 style="text-align: center; color: #333;">Thank You for Your Feedback!</h2>
+        <h2 style="text-align: center; color: #333;">Thank for inquiry on our website. </h2>
         <p style="font-size: 16px; color: #555;">Dear ${name},</p>
         <p style="font-size: 16px; color: #555;">Thank you for reaching out to us. Here’s a summary of your submission:</p>
         <ul>
@@ -54,7 +54,7 @@ const createContact = async (req, res) => {
         // Email template for admin
         const adminTemplate = `
     <div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
-        <h2 style="text-align: center; color: #333;">New Contact Submission</h2>
+        <h2 style="text-align: center; color: #333;">New Inquiry Recieved.</h2>
         <p style="font-size: 16px; color: #555;">A new contact form submission has been received:</p>
         <ul>
             <li><strong>Name:</strong> ${name}</li>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import axios from "axios"
+import axios from "axios";
 import toast from "react-hot-toast";
 
 const FeedBack = () => {
@@ -12,7 +12,9 @@ const FeedBack = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false); // Modal state
+  const [popupMessage, setPopupMessage] = useState(""); // Message to show in modal
 
   useEffect(() => {
     window.scrollTo({
@@ -23,32 +25,39 @@ const FeedBack = () => {
 
   // Handle form data changes
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await axios.post("https://api.kanusrkgroup.in/api/create-feedback", formData)
-      if (res.status == 200) {
-        toast.success(res.data.message)
+      const res = await axios.post("https://api.kanusrkgroup.in/api/create-feedback", formData);
+      if (res.status === 200) {
+        // toast.success(res.data.message);
+        setPopupMessage("Thank you for your feedback! Your details have been submitted successfully.");
+        setShowPopup(true); // Show modal on success
         setFormData({
           name: "",
           email: "",
           whatsapp: "",
           age: "",
           message: "",
-        })
-        setLoading(false)
+        });
       }
     } catch (error) {
-      console.log(error)
-      setLoading(false)
+      console.log(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false); // Close the modal
+  };
 
   return (
     <>
@@ -107,7 +116,7 @@ const FeedBack = () => {
                   <div className="form-group">
                     <label htmlFor="whatsapp">Whatsapp no.*</label>
                     <input
-                      type="int"
+                      type="text"
                       id="whatsapp"
                       className="form-control"
                       name="whatsapp"
@@ -123,7 +132,7 @@ const FeedBack = () => {
                   <div className="form-group">
                     <label htmlFor="age">Age*</label>
                     <input
-                      type="int"
+                      type="number"
                       id="age"
                       className="form-control"
                       placeholder="Your Age"
@@ -152,7 +161,7 @@ const FeedBack = () => {
 
                 <div className="col-md-12">
                   <button type="submit" className="btn-Submit">
-                    {loading ? "Please Wait.." : "  Send Message"}
+                    {loading ? "Please Wait.." : "Send Message"}
                   </button>
                 </div>
               </form>
@@ -160,6 +169,52 @@ const FeedBack = () => {
           </div>
         </div>
       </section>
+
+      {/* Popup Modal */}
+      {showPopup && (
+        <div
+          className="popup-overlay"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="popup-content"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "10px",
+              textAlign: "center",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h4>{popupMessage}</h4>
+            <button
+              onClick={handleClosePopup}
+              style={{
+                marginTop: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#F05A28",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

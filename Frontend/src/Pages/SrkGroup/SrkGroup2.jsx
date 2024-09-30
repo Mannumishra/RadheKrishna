@@ -25,7 +25,7 @@ const SrkGroup2 = () => {
       <section className="about py-5">
         <div className="container">
           <div className="row">
-          <div className="col-md-4">
+            <div className="col-md-4">
               <div className="yatraGroup">
                 <img
                   src={srkImage2}
@@ -50,7 +50,7 @@ const SrkGroup2 = () => {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="imageModalLabel">
-                     SRK Yatra Group
+                        SRK Yatra Group
                       </h5>
                       <button
                         type="button"
@@ -93,6 +93,16 @@ const SrkGroup2 = () => {
                 ओर दिए हुए व्हाट्सएप लिंक के द्वारा हमारे कम्युनिटी ग्रुप से
                 जुड़े। जहां आपको आने वाले समय में नई यात्राओं के विषय में
                 जानकारी मिलती रहेगी।
+              </p>
+              <p>
+                <strong className="color" >
+                  <i className="fa-brands fa-whatsapp"></i><a href="https://chat.whatsapp.com/LpObqmi3hnsDnKEeL0k0Lv"
+                    className="whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Join Whatsapp Community
+                  </a>
+                </strong>
               </p>
             </div>
             <div className="col-md-1"></div>

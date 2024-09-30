@@ -8,3 +8,14 @@
 .yatraGroup img:hover {
   transform: scale(1); /* Zoom to full size on hover */
 }
+
+.color .whatsapp {
+  color: green;
+}
+
+.color i {
+  color: green;
+  font-size: 30px;
+}
+
+

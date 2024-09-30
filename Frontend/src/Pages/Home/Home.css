@@ -1,245 +1,245 @@
 .joinus .banner{
-    height: 450px;
-    width: 100%;
-    position: relative;
+  height: 450px;
+  width: 100%;
+  position: relative;
 }
 .joinus .banner img{
-    width: 100%;
-    height: 100%;
-   
+  width: 100%;
+  height: 100%;
+ 
 }
 .joinus .banner .absolute-cont{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
 }
 
 .joinus .banner .absolute-cont h4{
-    color: white;
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 .joinus .banner .absolute-cont .btn-join{
-    padding: 0.5rem 2.5rem;
-    background: var(--color-orange);
-    color: white;
-    text-decoration: none;
-    border-radius: 50rem;
-    font-size: 1.2rem;
-    
+  padding: 0.5rem 2.5rem;
+  background: var(--color-orange);
+  color: white;
+  text-decoration: none;
+  border-radius: 50rem;
+  font-size: 1.2rem;
+  
 }
 
 .joinus .subcribe  {
-  background: var(--color-yellow);
-    width: 90%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+background: var(--color-yellow);
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .joinus .subcribe h2  {
-    color: var(--color-orange);
-    font-size: 1.6rem;
+  color: var(--color-orange);
+  font-size: 1.6rem;
 }
 .joinus .subcribe .btn-Subscribe{
-    padding: 0.5rem 2.5rem;
-    background: var(--color-orange);
-    color: white;
-    text-decoration: none;
-    border-radius: 50rem;
-    font-size: 1.2rem;
+  padding: 0.5rem 2.5rem;
+  background: var(--color-orange);
+  color: white;
+  text-decoration: none;
+  border-radius: 50rem;
+  font-size: 1.2rem;
 }
 
 .imagetext h2 {
-    text-align: center;
+  text-align: center;
 
 }
 
 
 
 .container .view-gallerybtn {
-    padding: 0.5rem 2.5rem;
-    background: var(--color-orange);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2rem;    
+  padding: 0.5rem 2.5rem;
+  background: var(--color-orange);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2rem;    
 }
 
-/* .home-slider {
-    position: relative;
-  }
-   */
-  .slider .slide-item {
-    position: relative;
-  }
-  
-  .slider .slide-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    margin-top: 0;
-  }
+.home-slider {
+  margin-top: 4rem;
+}
 
- /* Existing styles for prev-button and next-button */
+.slider .slide-item {
+  position: relative;
+}
+
+.slider .slide-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top: 0;
+}
+
+/* Existing styles for prev-button and next-button */
 /* Original styles */
 .prev-button,
 .next-button {
-  position: absolute;
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
+position: absolute;
+top: 50%; /* Center vertically */
+transform: translateY(-50%);
+background-color: rgba(0, 0, 0, 0.5);
+border: none;
+color: white;
+font-size: 24px;
+padding: 10px;
+cursor: pointer;
+z-index: 1;
 }
 
 /* Modified styles for fixed positioning */
 @media (min-width: 768px) {
-  .prev-button,
-  .next-button {
-    top: 50%; /* Adjust this value based on the desired position in the slider */
-    transform: translateY(-50%); /* Center vertically within the fixed height */
-  }
+.prev-button,
+.next-button {
+  top: 50%; /* Adjust this value based on the desired position in the slider */
+  transform: translateY(-50%); /* Center vertically within the fixed height */
+}
 
-  .prev-button {
-    left: 15px; /* Fixed position from left */
-  }
+.prev-button {
+  left: 15px; /* Fixed position from left */
+}
 
-  .next-button {
-    right: 15px; /* Fixed position from right */
-  }
+.next-button {
+  right: 15px; /* Fixed position from right */
+}
 }
 
 /* Adjust for tablets */
 @media (max-width: 768px) {
-  .prev-button,
-  .next-button {
-    top: calc(50% - 10px); 
-    font-size: 20px; 
-    padding: 8px; 
-  }
+.prev-button,
+.next-button {
+  top: calc(50% - 10px); 
+  font-size: 20px; 
+  padding: 8px; 
+}
 
-  .prev-button {
-    left: 10px; 
-  }
+.prev-button {
+  left: 10px; 
+}
 
-  .next-button {
-    right: 10px; 
-  }
+.next-button {
+  right: 10px; 
+}
 }
 
 
 @media (max-width: 480px) {
-  .prev-button,
-  .next-button {
-    top: calc(50% - 5px);
-    font-size: 18px; 
-    padding: 6px; 
-  }
+.prev-button,
+.next-button {
+  top: calc(50% - 5px);
+  font-size: 18px; 
+  padding: 6px; 
+}
 
-  .prev-button {
-    left: 5px; 
-  }
+.prev-button {
+  left: 5px; 
+}
 
-  .next-button {
-    right: 5px; 
-  }
+.next-button {
+  right: 5px; 
+}
 }
 
 
-  
-  /* .btns {
-    position: absolute;
-    top: 80%;
-    left: 5rem;
-    z-index: 10;
-    display: flex;
-    gap: 1rem;
+
+/* .btns {
+  position: absolute;
+  top: 80%;
+  left: 5rem;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
 }
-  
-  .member-btn,
-  .donate-btn {
-    padding: 0.8rem 2rem;
-    background: var(--color-orange);
-    color: white;
-    text-decoration: none;
-    border-radius: 50rem;
-    font-size: 1rem;
-  }
-  
-  .donate-btn {
-    color: var(--color-orange);
-    background: var(--color-yellow);
-  } */
 
-  .btns .member-btn,
-  .btns .donate-btn {
-    padding: 0.8rem 2rem;
-    background: var(--color-yellow);
-    color: var(--color-orange);
-    text-decoration: none;
-    border-radius: 50rem;
-    font-size: 1rem;
-    
-  }
-  
-  .btns .donate-btn {
-    color: white;
-    background: var(--color-orange);
-  }
+.member-btn,
+.donate-btn {
+  padding: 0.8rem 2rem;
+  background: var(--color-orange);
+  color: white;
+  text-decoration: none;
+  border-radius: 50rem;
+  font-size: 1rem;
+}
 
-  .btns .member-btn:hover {
-    color: var(--color-orange);
-    background: var(--color-yellow);
-  }
-  
-  .btns .donate-btn:hover {
-    color: var(--color-yellow);
-    background: var(--color-orange);
-  }
+.donate-btn {
+  color: var(--color-orange);
+  background: var(--color-yellow);
+} */
 
-  @media only screen and (max-width : 1100px) {
-    .btns {
-      margin-top: 20px;
-    }
+.btns .member-btn,
+.btns .donate-btn {
+  padding: 0.8rem 2rem;
+  background: var(--color-yellow);
+  color: var(--color-orange);
+  text-decoration: none;
+  border-radius: 50rem;
+  font-size: 1rem;
+  
+}
+
+.btns .donate-btn {
+  color: white;
+  background: var(--color-orange);
+}
+
+.btns .member-btn:hover {
+  color: var(--color-orange);
+  background: var(--color-yellow);
+}
+
+.btns .donate-btn:hover {
+  color: var(--color-yellow);
+  background: var(--color-orange);
+}
+
+@media only screen and (max-width : 1100px) {
+  .btns {
+    margin-top: 20px;
   }
+}
 @media only screen and (max-width : 600px) {
-    .joinus .banner .absolute-cont {
-        width: 95%;
-    }
-    .joinus .banner .absolute-cont h4 {
-        font-size: 2rem;
-    }
-    .joinus .subcribe {
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: 1rem 2rem;
-        width: 100%;
-    }
-    .joinus .subcribe h2 {
-        color: var(--color-orange);
-        font-size: 1.2rem;
-        text-align: center;
-    }
-    .joinus .subcribe .btn-Subscribe {
-        padding: 0.5rem 2rem;
-        font-size: 1rem;
-    }
+  .joinus .banner .absolute-cont {
+      width: 95%;
+  }
+  .joinus .banner .absolute-cont h4 {
+      font-size: 2rem;
+  }
+  .joinus .subcribe {
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem 2rem;
+      width: 100%;
+  }
+  .joinus .subcribe h2 {
+      color: var(--color-orange);
+      font-size: 1.2rem;
+      text-align: center;
+  }
+  .joinus .subcribe .btn-Subscribe {
+      padding: 0.5rem 2rem;
+      font-size: 1rem;
+  }
 }
 @media only screen and (max-width:450px){
-    .member-btn, .donate-btn {
-        padding: 0.8rem 1rem;
-    }
+  .member-btn, .donate-btn {
+      padding: 0.8rem 1rem;
+  }
 
 }

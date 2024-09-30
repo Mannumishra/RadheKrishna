@@ -1,13 +1,15 @@
 
-.insta a {
+.color a {
     text-decoration: none;
+    text-decoration: none;
+   color: rgb(254,39,112);
+   margin-left: 2rem;
 
 }
 
-.insta {
-   text-decoration: none;
-   color: rgb(254,39,112);
-   margin-left: 2rem;
+.color {
+    color: rgb(254,39,112);
+
 }
 
 .our-products img{

@@ -64,7 +64,7 @@ const Footer = () => {
                     </li>
                     <li>
                       <i className="fa-solid fa-caret-right me-2"></i>
-                      <Link to="/images" className="text-light">
+                      <Link to="/gallery" className="text-light">
                         Gallery
                       </Link>
                     </li>
@@ -130,17 +130,17 @@ const Footer = () => {
               <p>Join with us and feel the power of God.</p>
               <ul className="list-unstyled social-links d-flex">
                 <li className="me-3">
-                  <a href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL" className="text-light">
+                  <a target="_blank" href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL" className="text-light">
                     <i className="fab fa-facebook-f"></i>
                   </a>
                 </li>
                 <li className="me-3">
-                  <a href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx" className="text-light">
+                  <a target="_blank" href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx" className="text-light">
                     <i className="fab fa-instagram"></i>
                   </a>
                 </li>
                 <li className="me-3">
-                  <a href="https://www.youtube.com/@kanusrkgroup" className="text-light">
+                  <a target="_blank" href="https://www.youtube.com/@kanusrkgroup" className="text-light">
                     <i className="fab fa-youtube"></i>
                   </a>
                 </li>

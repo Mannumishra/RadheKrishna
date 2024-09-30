@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import YouTube from "react-youtube";
+
+// Helper function to extract the YouTube video ID
+const getYouTubeVideoId = (url) => {
+  const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  return match && match[2].length === 11 ? match[2] : null;
+};
 
 const Video = () => {
-  // State to store video data from API
   const [videoSources, setVideoSources] = useState([]);
+  const currentVideoRef = useRef(null);
 
-  // Fetch video data from API on component mount
   useEffect(() => {
     const getApiData = async () => {
       try {
@@ -21,12 +28,18 @@ const Video = () => {
 
     getApiData();
 
-    // Scroll to the top when component mounts
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   }, []);
+
+  const handleVideoPlay = (event) => {
+    if (currentVideoRef.current && currentVideoRef.current !== event.target) {
+      currentVideoRef.current.pauseVideo();
+    }
+    currentVideoRef.current = event.target;
+  };
 
   return (
     <>
@@ -40,7 +53,6 @@ const Video = () => {
         <meta name="author" content="Kanu SRK Group" />
       </Helmet>
 
-      {/* bread-content ==  */}
       <div className="hero home-hero">
         {/* Add hero content here */}
       </div>
@@ -50,22 +62,28 @@ const Video = () => {
           <div className="imagetext">
             <h2 className="title-head">Videos Gallery</h2>
 
-            {/* Bootstrap grid system */}
             <div className="row">
               {videoSources && videoSources.length > 0 ? (
-                videoSources.map((video, index) => (
-                  <div className="col-md-4 col-sm-6 mb-4" key={index}>
-                    <iframe
-                      width="100%"
-                      height="240"
-                      src={video.video} // Use video URL from API data
-                      title={`Video ${index + 1}`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                ))
+                videoSources.map((video, index) => {
+                  const videoId = getYouTubeVideoId(video.video); // Extract video ID
+                  if (!videoId) return null; // Skip if videoId is invalid
+
+                  return (
+                    <div className="col-md-4 col-sm-6 mb-4" key={index}>
+                      <YouTube
+                        videoId={videoId}
+                        opts={{
+                          width: "100%",
+                          height: "240",
+                          playerVars: {
+                            autoplay: 0,
+                          },
+                        }}
+                        onPlay={handleVideoPlay}
+                      />
+                    </div>
+                  );
+                })
               ) : (
                 <p>No videos available</p>
               )}

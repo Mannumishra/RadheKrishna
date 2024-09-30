@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import toast from "react-hot-toast";
 
 const Registration = () => {
@@ -12,8 +11,7 @@ const Registration = () => {
     });
   }, []);
 
-
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     whatsappNumber: "",
@@ -21,41 +19,48 @@ const Registration = () => {
     age: "",
     message: "",
   });
-
+  const [showPopup, setShowPopup] = useState(false); // Modal state
+  const [popupMessage, setPopupMessage] = useState(""); // Message to show in modal
 
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
-    setLoading(true)
     e.preventDefault();
+    setLoading(true);
     try {
-      const res = await axios.post("https://api.kanusrkgroup.in/api/create-registation", formData)
+      const res = await axios.post("https://api.kanusrkgroup.in/api/create-registation", formData);
       if (res.status === 200) {
-        toast.success(res.data.message)
+        setPopupMessage("Thank you for your registration! Your details have been submitted successfully.");
+        setShowPopup(true); // Show modal on success
         setFormData({
           name: "",
           whatsappNumber: "",
           address: "",
           age: "",
           message: "",
-        })
-        setLoading(false)
+        });
       }
     } catch (error) {
-      console.log(error)
-      setLoading(false)
+      console.log(error);
+      toast.error("An error occurred while submitting the form.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false); // Close the modal
   };
 
   return (
     <>
       <Helmet>
-        <title>Registration - Your Site Name</title> {/* Set the title */}
-        <meta name="description" content="Register to join our community and access exclusive features." /> {/* Set a description */}
+        <title>Registration - Your Site Name</title>
+        <meta name="description" content="Register to join our community and access exclusive features." />
       </Helmet>
 
       <div className="hero home-hero"></div>
@@ -78,6 +83,7 @@ const Registration = () => {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -93,6 +99,7 @@ const Registration = () => {
                       value={formData.whatsappNumber}
                       name="whatsappNumber"
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -108,6 +115,7 @@ const Registration = () => {
                       value={formData.address}
                       name="address"
                       onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -123,6 +131,7 @@ const Registration = () => {
                       value={formData.age}
                       onChange={handleChange}
                       name="age"
+                      required
                     />
                   </div>
                 </div>
@@ -137,13 +146,14 @@ const Registration = () => {
                       value={formData.message}
                       name="message"
                       onChange={handleChange}
+                      required
                     ></textarea>
                   </div>
                 </div>
 
                 <div className="col-md-12">
                   <button type="submit" className="btn-Submit">
-                  {loading ? "Please Wait.." : "  Send Message"}
+                    {loading ? "Please Wait.." : "Send Message"}
                   </button>
                 </div>
               </form>
@@ -151,6 +161,51 @@ const Registration = () => {
           </div>
         </div>
       </section>
+
+      {showPopup && (
+        <div
+          className="popup-overlay"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="popup-content"
+            style={{
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "10px",
+              textAlign: "center",
+              boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h4>{popupMessage}</h4>
+            <button
+              onClick={handleClosePopup}
+              style={{
+                marginTop: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#F05A28",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

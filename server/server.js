@@ -11,6 +11,7 @@ const dressRouter = require("./Router/DressRouter")
 const Registationrouter = require("./Router/RegistationRoutes")
 const Contactrouter = require("./Router/contactRoutes")
 const Feedbackrouter = require("./Router/feedbackRoutes")
+const Donaterouter = require("./Router/DonateRoutes")
 
 const app = express()
 app.use(cors())
@@ -23,6 +24,7 @@ app.use("/api", dressRouter);
 app.use("/api", Registationrouter);
 app.use("/api", Contactrouter);
 app.use("/api", Feedbackrouter);
+app.use("/api", Donaterouter);
 
 app.set(express.static("./public"));
 app.use("/public", express.static("public"));

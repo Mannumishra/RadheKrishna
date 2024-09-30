@@ -2,36 +2,41 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/logo.png";
-import Krishnaudio from "../../Assets/audio.mp3";
+import Krishnaudio from "../../Assets/song.mp3";
 
 const Header = () => {
   const [audio] = useState(new Audio(Krishnaudio));
-    const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    // Define the handlePlayAudio function outside of useEffect
-    const handlePlayAudio = () => {
-        audio.muted = false;
-        audio.play().catch((error) => {
-            console.log("Playback failed after user interaction:", error);
-        });
+  // Define the handlePlayAudio function
+  const handlePlayAudio = () => {
+    audio.muted = false; // Unmute the audio
+    audio.play().then(() => {
+      setIsPlaying(true); // Update state if play succeeds
+    }).catch((error) => {
+      console.log("Playback failed after user interaction or auto-play policy:", error);
+    });
+  };
+
+  useEffect(() => {
+    // Try to auto-play audio when the component mounts
+    handlePlayAudio();
+
+    // Cleanup audio when the component unmounts
+    return () => {
+      audio.pause();
+      audio.currentTime = 0; // Reset audio to the beginning
     };
+  }, [audio]);
 
-    useEffect(() => {
-        // Cleanup audio when the component unmounts
-        return () => {
-            audio.pause();
-            audio.currentTime = 0; // Reset audio to the beginning
-        };
-    }, [audio]);
-
-    const toggleAudio = () => {
-        if (isPlaying) {
-            audio.pause();
-        } else {
-            handlePlayAudio(); // Call the function to play audio
-        }
-        setIsPlaying(!isPlaying); // Toggle the playing state
-    };
+  const toggleAudio = () => {
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false); // Update state when paused
+    } else {
+      handlePlayAudio(); // Call the function to play audio
+    }
+  };
 
   const [active, setActive] = useState(false);
 
@@ -41,9 +46,9 @@ const Header = () => {
 
   return (
     <>
-      {/* <a href="#" className="music_float" onClick={(e) => { e.preventDefault(); toggleAudio(); }}>
-            <i className="fa-solid fa-music"></i>
-        </a> */}
+        <a href="#" className="music_float" onClick={(e) => { e.preventDefault(); toggleAudio(); }}>
+       {isPlaying ? <i class="fa-solid fa-pause"></i> : <i class="fa-solid fa-play"></i>}
+      </a>
       <a
         href="https://api.whatsapp.com/send?phone=919873031650"
         target="_blank"
@@ -61,28 +66,29 @@ const Header = () => {
           <div className="contact">
             <div className="single-info">
               <i className="fa-solid fa-envelope-open-text"></i>
-              <a href="mailto:kanusrkgroup.official@gmail.com">kanusrkgroup.official@gmail.com</a>
+              <a href="mailto:kanusrkgroup.official@gmail.com">
+                kanusrkgroup.official@gmail.com
+              </a>
             </div>
             <div className="single-info">
               <i className="fa-solid fa-phone-volume"></i>
               <a href="tel:+919873031650">+91-9873031650</a>
-              <a href="#" className="mx-5">Registration No :- 414/2023</a>
+              <a href="#" className="mx-5">
+                Registration No :- 414/2023
+              </a>
             </div>
-            
-            
           </div>
 
           <div className="list-unstyled social ">
-            <a href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL">
+            <a target="_blank" href="https://www.facebook.com/profile.php?id=100089219941173&mibextid=ZbWKwL">
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx">
+            <a target="_blank" href="https://www.instagram.com/kanusrkgroup?igsh=ZDhndGhxYW13NDlx">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://www.youtube.com/@kanusrkgroup">
+            <a target="_blank" href="https://www.youtube.com/@kanusrkgroup">
               <i className="fab fa-youtube"></i>
             </a>
-           
           </div>
 
           {/* Google Translate Element */}

@@ -25,7 +25,7 @@ const SrkGroup1 = () => {
       <section className="about py-5">
         <div className="container">
           <div className="row">
-          <div className="col-md-4">
+            <div className="col-md-4">
               <div className="Bhimeshwari">
                 <img
                   src={srkImage1}
@@ -50,7 +50,7 @@ const SrkGroup1 = () => {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="imageModalLabel">
-                      SRK Maa Bhimeshwari Kul
+                        SRK Maa Bhimeshwari Kul
                       </h5>
                       <button
                         type="button"
@@ -95,6 +95,16 @@ const SrkGroup1 = () => {
                 ओर दिए हुए व्हाट्सएप लिंक के द्वारा हमारे कम्युनिटी ग्रुप से
                 जुड़े। जहां आपको प्रतिदिन मां बेरी वाली के दर्शन मिलेंगे एवं हर
                 गतिविधि की सूचना दी जाएगी।
+              </p>
+              <p>
+                <strong className="color" >
+                  <i className="fa-brands fa-instagram"></i><a href="https://www.instagram.com/shreekanu_poshakbhandar?igsh=b25idmRveG85c2Rp"
+                    className="insta"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Follow us on Instagram
+                  </a>
+                </strong>
               </p>
             </div>
             <div className="col-md-1"></div>
