@@ -19,6 +19,7 @@ import EditDress from '../../Pages/Dress/EditDress'
 import FeedBack from '../../Pages/Feedback/FeedBack'
 import Registation from '../../Pages/Registation/Registation'
 import Query from '../../Pages/Query/Query'
+import Donate from '../../Pages/Donation/Donate'
 
 const Home = () => {
   const login = sessionStorage.getItem("login")
@@ -56,6 +57,7 @@ const Home = () => {
 
               <Route path={"/all-feedback"} element={<FeedBack />} />
               <Route path={"/all-registation"} element={<Registation />} />
+              <Route path={"/all-donate"} element={<Donate />} />
               <Route path={"/all-query"} element={<Query />} />
 
         
