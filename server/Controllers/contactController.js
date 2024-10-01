@@ -72,7 +72,7 @@ const createContact = async (req, res) => {
         await transporter.sendMail({
             from: 'kanusrkgroup.official@gmail.com', // Replace with your email
             to: email,
-            subject: 'Thank You for Your Feedback',
+            subject: 'Thank You for Reach Us',
             html: userTemplate,
         });
 
