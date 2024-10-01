@@ -74,7 +74,7 @@ const createDonate = async (req, res) => {
         await transporter.sendMail({
             from: 'kanusrkgroup.official@gmail.com', // Replace with your email
             to: email,
-            subject: 'Thank You for Your Feedback',
+            subject: 'Thank You for Your Donation',
             html: userTemplate,
         });
 
@@ -82,13 +82,13 @@ const createDonate = async (req, res) => {
         await transporter.sendMail({
             from: 'kanusrkgroup.official@gmail.com', // Replace with your email
             to: "kanusrkgroup.official@gmail.com",
-            subject: 'New Feedback Submission',
+            subject: 'New Donation Submission',
             html: adminTemplate,
         });
         res.status(200).json({
             success: true,
             data: newFeedback,
-            message: "Feedback submitted successfully"
+            message: "Donation submitted successfully"
         });
     } catch (error) {
         console.error(error);
