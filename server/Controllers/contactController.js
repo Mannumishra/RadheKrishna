@@ -45,7 +45,6 @@ const createContact = async (req, res) => {
             <li><strong>Address:</strong> ${address}</li>
             <li><strong>Message:</strong> ${message}</li>
         </ul>
-        <p style="font-size: 16px; color: #555;">We appreciate your feedback and will get back to you soon!</p>
         <p style="font-size: 16px; color: #555;">Best regards,</p>
         <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
     </div>

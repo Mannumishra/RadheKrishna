@@ -44,7 +44,6 @@ const createFeedback = async (req, res) => {
             <li><strong>Age:</strong> ${age}</li>
             <li><strong>Message:</strong> ${message}</li>
         </ul>
-        <p style="font-size: 16px; color: #555;">We appreciate your input and will consider it in our future improvements.</p>
         <p style="font-size: 16px; color: #555;">Best regards,</p>
         <p style="font-size: 16px; color: #555;">Kanu SRK Group</p>
     </div>
