@@ -98,7 +98,7 @@ const SrkGroup1 = () => {
               </p>
               <p>
                 <strong className="color" >
-                  <i className="fa-brands fa-instagram"></i><a href="https://www.instagram.com/shreekanu_poshakbhandar?igsh=b25idmRveG85c2Rp"
+                  <i className="fa-brands fa-instagram" style={{color:"red"}}></i><a href="https://www.instagram.com/srkmaabhimeshwarikul.beri?igsh=MWR1eTJoMWI2aTBhZA=="
                     className="insta"
                     target="_blank"
                     rel="noopener noreferrer">

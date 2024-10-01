@@ -43,7 +43,6 @@ const createDonate = async (req, res) => {
         <li><strong>WhatsApp Number:</strong> ${whatsapp}</li>
         <li><strong>Age:</strong> ${age}</li>
         <li><strong>Message:</strong> ${message}</li>
-        <li><strong>Donation Amount:</strong> $${donationAmount}</li>
     </ul>
     <p style="font-size: 16px; color: #555;">We are grateful for your contribution and your belief in our cause. Your donation will make a meaningful impact.</p>
     <p style="font-size: 16px; color: #555;">Thank you once again for your generosity!</p>
@@ -63,7 +62,6 @@ const createDonate = async (req, res) => {
         <li><strong>WhatsApp Number:</strong> ${whatsapp}</li>
         <li><strong>Age:</strong> ${age}</li>
         <li><strong>Message:</strong> ${message}</li>
-        <li><strong>Donation Amount:</strong> $${donationAmount}</li>
     </ul>
     <p style="font-size: 16px; color: #555;">Please ensure proper acknowledgment of this donation and update the records accordingly.</p>
     <p style="font-size: 16px; color: #555;">Best regards,</p>

@@ -57,7 +57,7 @@ const Header = () => {
         <i className="fa-brands fa-whatsapp whatsapp-icon"></i>
       </a>
 
-      <a href="tel:+919811881650" target="_blank" className="call_float">
+      <a href="tel:+919873031650" target="_blank" className="call_float">
         <i className="fa-solid fa-phone-volume"></i>
       </a>
 

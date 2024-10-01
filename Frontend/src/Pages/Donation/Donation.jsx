@@ -42,7 +42,7 @@ const Donation = () => {
     try {
       setLoading(true);
       // Sending the form data to the backend
-      const response = await fetch("https://api.kanusrkgroup.in/api/create-donate", {
+      const response = await fetch("http://localhost:8000/api/create-donate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
